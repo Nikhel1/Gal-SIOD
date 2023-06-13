@@ -25,62 +25,45 @@ Create a Python 3.8 environement with CUDA 11.1.1 and GCC 9.3.0.
 Download and extract RadioGalaxyNET data from the link described in the datasheet.
 We expect the directory structure to be the following:
 ```
-./RadioGalaxyNET/
+./data/coco/
   annotations/  # annotation json files
+      annotations/train.json
+      annotations/val.json
   train/    # train images
   val/      # val images
-  test/     # test images
 ```
 
-## [Dataset](https://drive.google.com/drive/folders/1mJayvvNkmvur7IOG17-hz3AHQ2yPWfUf) 
-
-- Keep1_COCO2017_Train: **keep1_instances_train2017.json**
-
-- Semi-supervised annotation which has equivalent instance annotations to Keep1_COCO2017_Train: **mark_semi_instances_train2017.json**. (For Table 2)
-
-  We add a new field("keep") to the image infomation in annotation file, where keep=1 indicates the image belongs to labeled part and keep=0 indicates the image belongs to  unlabeled part.
+Download 'keep1_train.json' from this [link]() and place it in './data/coco/annotations/' along with 'train.json' and 'val.json' files.
 
 ## Training 
 
-Take CenterNet-Res18 for example:
+Train base model using single gpu:
+```
+CUDA_VISIBLE_DEVICES=0 python ./src/main.py ctdet --exp_id fsod_res18 --arch resdcn_18 --save_all --batch_size 8 --num_epochs 200 --master_batch 18 --lr 5e-4 --gpus 0 --num_workers 16 --prefix 'keep1_'
+```
+To ease reproduction of our results we provide base model checkpoint [here](). 
+Place the model in `./exp/ctdet/fsod_res18/` directory.
 
-- Directly train the centernet under SIOD setup.
-
-  ```shell
-  sh base_resdcn18_train.sh
-  ```
-
-- Train the centernet equipped with SPLG or PGCL.
-
-  ```
-  # SPLG
-  sh plg_resdcn18_train.sh
-  # PGCL 
-  gcl_resdcn18_train.sh
-  ```
-
-- Train the centernet equipped with DMiner.
-
-  ```
-  dminer_resdcn18_train.sh
-  or 
-  all_resdcn18_train.sh
-  ```
+Train with DMiner:
+```
+CUDA_VISIBLE_DEVICES=0 python ./src/main.py ctdet --exp_id siod_res18_plg_gcl --arch resdcn_18 --save_all --batch_size 8 --num_epochs 200 --master_batch 18 --lr 5e-4 --gpus 0 --num_workers 16 --prefix 'keep1_' --use_gcl --use_plg
+```
+To ease reproduction of our results we provide dminer model checkpoint [here](). 
+Place the model in `./exp/ctdet/siod_res18_plg_gcl/` directory.
 
 ## Evaluation 
 
-Evaluate the detector with new Score-aware Detection Evaluation Protocol.
+To evaluate on val images with a single GPU with new Score-aware Detection Evaluation Protocol, run:
 
+Base model:
 ```
-# modify the parameter "load_model" accordingly
-sh test_resdcn18.sh
-```
-
-## Visualization 
-
-Prepare some images and modified visualize.sh accordingly. 
-
-```
-sh visualize.sh
+python ./src/test.py ctdet --exp_id fsod_res18_eval --arch resdcn_18 --keep_res --load_model './exp/ctdet/fsod_res18/model_last.pth' --resume
 ```
 
+DMiner model:
+```
+python ./src/test.py ctdet --exp_id siod_res18_dminer --arch resdcn_18 --keep_res --load_model './exp/ctdet/siod_res18_plg_gcl/model_last.pth' --resume
+```
+
+## License
+The License will be updated after publication. Note that the SIOD is released under the MIT license.
