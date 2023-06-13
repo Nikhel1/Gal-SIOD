@@ -41,7 +41,7 @@ Train base model using single gpu:
 ```
 CUDA_VISIBLE_DEVICES=0 python ./src/main.py ctdet --exp_id fsod_res18 --arch resdcn_18 --save_all --batch_size 8 --num_epochs 200 --master_batch 18 --lr 5e-4 --gpus 0 --num_workers 16 --prefix 'keep1_'
 ```
-To ease reproduction of our results we provide base model checkpoint [here](). 
+To ease reproduction of our results we provide base model checkpoint [here](https://figshare.com/s/fef23f55c373b55e82d7). 
 Place the model in `./exp/ctdet/fsod_res18/` directory.
 
 Train with DMiner:
