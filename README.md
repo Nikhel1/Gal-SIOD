@@ -33,7 +33,7 @@ We expect the directory structure to be the following:
   val/      # val images
 ```
 
-Download 'keep1_train.json' from this [link]() and place it in './data/coco/annotations/' along with 'train.json' and 'val.json' files.
+Download 'keep1_train.json' from this [link](https://figshare.com/s/c45c564f4f66923800af) and place it in './data/coco/annotations/' along with 'train.json' and 'val.json' files.
 
 ## Training 
 
