@@ -74,6 +74,6 @@ def create_semi_supervised_annotation(path, anno_num=342996):
 
 
 if __name__ == "__main__":
-    path = "./data/coco/annotations/instances_train2017.json"
+    path = "./data/coco/annotations/train.json"
     create_keep_k_annos(path, 1)
     # create_semi_supervised_annotation(path)
