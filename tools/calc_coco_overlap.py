@@ -8,8 +8,8 @@ import numpy as np
 from pycocotools import mask as maskUtils
 ANN_PATH = '../../data/coco/annotations/'
 IMG_PATH = '../../data/coco/'
-ANN_FILES = {'train': 'instances_train2017.json',
-             'val': 'instances_val2017.json'}
+ANN_FILES = {'train': 'train.json',
+             'val': 'val.json'}
 DEBUG = False
 RESIZE = True
 
