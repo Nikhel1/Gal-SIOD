@@ -48,7 +48,7 @@ Train with DMiner:
 ```
 CUDA_VISIBLE_DEVICES=0 python ./src/main.py ctdet --exp_id siod_res18_plg_gcl --arch resdcn_18 --save_all --batch_size 8 --num_epochs 200 --master_batch 18 --lr 5e-4 --gpus 0 --num_workers 16 --prefix 'keep1_' --use_gcl --use_plg
 ```
-To ease reproduction of our results we provide dminer model checkpoint [here](). 
+To ease reproduction of our results we provide DMiner model checkpoint [here](https://figshare.com/s/c7219a9a4dc2b1acf132). 
 Place the model in `./exp/ctdet/siod_res18_plg_gcl/` directory.
 
 ## Evaluation 
