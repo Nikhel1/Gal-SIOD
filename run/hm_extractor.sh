@@ -12,6 +12,6 @@ python ../src/visualize.py ctdet \
 --ret_copy \
 --keep_res \
 --vis_prefix "vis_thr09" \
---visualize_path "/home/hanjun/outputs/siod/example/images2/" \
---anno_path "../data/coco/annotations/keep1_instances_train2017.json" \
---load_model "/home/hanjun/data/SIOD/checkpoints/siod_res18_dminer/model_last.pth" \
+--visualize_path "" \
+--anno_path "" \
+--load_model "" \
