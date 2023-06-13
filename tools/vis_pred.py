@@ -4,8 +4,8 @@ import sys
 import cv2
 import numpy as np
 import pickle
-IMG_PATH = '../../data/coco/val2017/'
-ANN_PATH = '../../data/coco/annotations/instances_val2017.json'
+IMG_PATH = '../../data/coco/val/'
+ANN_PATH = '../../data/coco/annotations/val.json'
 DEBUG = True
 
 def _coco_box_to_bbox(box):
@@ -38,12 +38,12 @@ COLORS = [((np.random.random((3, )) * 0.6 + 0.4)*255).astype(np.uint8) \
 def add_box(image, bbox, sc, cat_id):
   cat_id = _to_order[cat_id]
   cat_name = CAT_NAMES[cat_id]
-  # cv2.getTextSize() -> (width, height), baseline 最低端文本的y坐标
+  # cv2.getTextSize() -> (width, height), baseline 
   #                           (text, fontFace, fontScale, thickness)
   cat_size  = cv2.getTextSize(cat_name + '0', cv2.FONT_HERSHEY_SIMPLEX, 0.5, 2)[0]
   color = np.array(COLORS[cat_id]).astype(np.int32).tolist()
   txt = '{}{:.0f}'.format(cat_name, sc * 10)
-  # 高度不够
+  
   if bbox[1] - cat_size[1] - 2 < 0:
     cv2.rectangle(image,
                   (bbox[0], bbox[1] + 2),
