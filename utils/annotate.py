@@ -10,7 +10,7 @@ from visualizer import Visualizer, class_names, continuous_ids
 
 def select_images(path, save_path, instance_num=2, image_num=5, save_name="images"):
 	coco_api = COCO(path)
-	data_path = "/data1/coco2017/train2017/"
+	data_path = "/data1/coco2017/train/"
 
 	img_ids = sorted(coco_api.imgs.keys())
 	count = 0 
@@ -141,7 +141,7 @@ def load_annotation_and_visualize(path, anno_file, prefix=""):
 
 
 if __name__ == "__main__":
-	path = "/data1/coco2017/annotations/instances_train2017.json"
+	path = "/data1/coco2017/annotations/train.json"
 	save_path = "/data1/v_sungli/output/example/"
 	save_name = "image_100_i2"
 	image_path = "/data1/v_sungli/output/example/image5000"
