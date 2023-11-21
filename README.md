@@ -22,7 +22,7 @@ Create a Python 3.8 environement with CUDA 11.1.1 and GCC 9.3.0.
 
 ## Data preparation
 
-Download and extract RadioGalaxyNET data from the link described in the datasheet.
+Download and extract RadioGalaxyNET data from [here](https://data.csiro.au/collection/61068).
 We expect the directory structure to be the following:
 ```
 ./data/coco/
@@ -66,4 +66,4 @@ python ./src/test.py ctdet --exp_id siod_res18_dminer --arch resdcn_18 --keep_re
 ```
 
 ## License
-The License will be updated after publication. Note that the SIOD is released under the MIT license.
+MIT license.
